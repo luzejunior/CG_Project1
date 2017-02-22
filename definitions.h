@@ -6,5 +6,9 @@
 
 unsigned char * FBptr;
 
+int colorRed[4] = {255, 0, 0, 255};
+int colorGreen[4] = {0, 255, 0, 255};
+int colorBlue[4] = {0, 0, 255, 255};
+
 #endif // _DEFINITIONS_H_
 
