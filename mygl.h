@@ -73,16 +73,16 @@ void drawLine(int x0, int y0, int RGBA0[4], int x1, int y1, int RGBA1[4]){
 		incrementX1 = 0;
 	}
 
-	int maxNumber = deltaX; //Numero máximo de pixels que vai ser pintado.
+	int maior_Distancia = deltaX; //Numero máximo de pixels que vai ser pintado.
 	if(deltaX == 0){
-		maxNumber = deltaY;
+		maior_Distancia = deltaY;
 	}
 
-	int colorGradientRatio = 256/maxNumber;
-	int error = (maxNumber)/2;
+	int colorGradientRatio = 256/maior_Distancia;
+	int error = (maior_Distancia)/2;
 	int i = x0;
 
-	for(int k=0; k<=maxNumber; k++){
+	for(int k=0; k<=maior_Distancia; k++){
 		std::clog << "Pixel X: " << i << " Y: " << j << "\n";
 		std::clog << "DeltaX: " << deltaX << "\n";
 		std::clog << "DeltaY: " << deltaY << "\n";
