@@ -11,13 +11,12 @@
 //Recebe como parametro os pontos X e Y a serem colocados num plano cartesiano na tela.
 void putPixel(int x, int y, int RGBA[4]){
 
-	int print_position = ((x+255) + ((255-y) * IMAGE_HEIGHT)) * 4; //Posição do Array da memória onde o Pixel vai ser pintado.
+	int print_position = ((x+(IMAGE_WIDTH/2)) + (((IMAGE_HEIGHT/2)-y) * IMAGE_WIDTH)) * 4; //Posição do Array da memória onde o Pixel vai ser pintado.
 
 	//Definição do array dos pixels na tela.
-	FBptr[print_position] = RGBA[0];
-	FBptr[print_position+1] = RGBA[1];
-	FBptr[print_position+2] = RGBA[2];
-	FBptr[print_position+3] = RGBA[3];
+	for(int i = 0; i<4; i++){
+		FBptr[print_position+i] = RGBA[i];
+	}
 }
 
 //Função para desenhar linhas na tela.
@@ -40,6 +39,7 @@ void drawLine(int x0, int y0, int RGBA0[4], int x1, int y1, int RGBA1[4]){
 	RGBA2[3] = RGBA0[3];
 
 	if (deltaX < 0){
+		deltaX = -deltaX;
 		incrementX = -1;
 		incrementX1 = -1;
 	}
@@ -59,10 +59,17 @@ void drawLine(int x0, int y0, int RGBA0[4], int x1, int y1, int RGBA1[4]){
 		int tmp1 = deltaX;
 		deltaX = deltaY;
 		deltaY = tmp1;
-		if(deltaX < 0)
+		if (incrementY<0){
+			deltaX = -deltaX;
+			std::clog << deltaX << "\n";
+		}
+		if(deltaX<0){
 			incrementY1 = -1;
-		else if(deltaX>0)
+			deltaX = -deltaX;
+		}
+		else if(deltaX>0){
 			incrementY1 = 1;
+		}
 		incrementX1 = 0;
 	}
 
@@ -76,12 +83,12 @@ void drawLine(int x0, int y0, int RGBA0[4], int x1, int y1, int RGBA1[4]){
 	int i = x0;
 
 	for(int k=0; k<=maxNumber; k++){
-		// std::clog << "Pixel X: " << i << " Y: " << j << "\n";
-		// std::clog << "DeltaX: " << deltaX << "\n";
-		// std::clog << "DeltaY: " << deltaY << "\n";
-		// std::clog << "Error: " << error << "\n";
-		// std::clog << "incrementX: " << incrementX << " e " << incrementX1 << "\n";
-		// std::clog << "incrementY: " << incrementY << " e " << incrementY1 << "\n\n";
+		std::clog << "Pixel X: " << i << " Y: " << j << "\n";
+		std::clog << "DeltaX: " << deltaX << "\n";
+		std::clog << "DeltaY: " << deltaY << "\n";
+		std::clog << "Error: " << error << "\n";
+		std::clog << "incrementX: " << incrementX << " e " << incrementX1 << "\n";
+		std::clog << "incrementY: " << incrementY << " e " << incrementY1 << "\n\n";	
 		
 		putPixel(i, j, RGBA2);
 		error += deltaY;
