@@ -38,6 +38,11 @@ void drawLine(int x0, int y0, int RGBA0[4], int x1, int y1, int RGBA1[4]){
 	RGBA2[2] = RGBA0[2];
 	RGBA2[3] = RGBA0[3];
 
+	if(deltaX == 0 && deltaY == 0){
+		putPixel(x0, y0, RGBA2);
+		return;
+	}
+
 	if (deltaX < 0){
 		deltaX = -deltaX;
 		incrementX = -1;
