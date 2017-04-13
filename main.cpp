@@ -28,10 +28,13 @@ glm::vec3 camera_look_up;
 //-----------------------------------------------------------------------------
 void MyGlDraw(void)
 {
+	cleanScreen();
 	R1 = matrixRotationX(0.0f);
 	R2 = glm::rotate(R2, 0.005f, glm::vec3(0.0f, 1.0f, 0.0f));
 
 	M_Model = R1 * R2;
+
+	printf("\nRotação: %f", M_Model[2][0]);
 
 	camera_pos = glm::vec3(0.0f, 0.0f, 3.0f);
 	camera_look_at = glm::vec3(0.0f, 0.0f, 0.0f);
@@ -96,27 +99,8 @@ void MyGlDraw(void)
   		v2 = v2 * M_Screen;
   		v3 = v3 * M_Screen;
 
-  		if((int)v1[0] == (int)v2[0]){
-  			v2[0] = v2[0] + 1.0f;
-  		}
-		if((int)v1[1] == (int)v2[1]){
-  			v2[1] = v2[1] + 1.0f;
-  		}
-  		if((int)v2[0] == (int)v3[0]){
-  			v3[0] += 1.0f;
-  		}
-  		if((int)v2[1] == (int)v3[1]){
-  			v3[1] += 1.0f;
-  		}
-  		if((int)v1[0] == (int)v3[0]){
-  			v3[0] += 1.0f;
-  		}
-  		if((int)v1[1] == (int)v3[1]){
-  			v3[1] += 1.0f;
-  		}
-
-
-  		//printf("\n %d %d", (int) v3[0], (int)v3[1]);
+  		if(i == 346)
+  			printf("\n V1: %d V1: %d, V2: %d V2: %d, V3: %d V3: %d e i = %d", (int) v1[0], (int)v1[1], (int)v2[0], (int)v2[1], (int)v3[0], (int)v3[1], i);
 
  	 	drawTriangle((int)v1[0], (int)v1[1], colorWhite, (int)v2[0], (int)v2[1], colorWhite, (int)v3[0], (int)v3[1], colorWhite);
  	}
@@ -141,6 +125,14 @@ void MyGlDraw(void)
 	//drawLine(-100, 90, colorGreen, 100, 0, colorBlue);
 	//drawTriangle(292, 366, colorBlue, 275, 379, colorBlue, 275, 379, colorBlue);
 	//drawTriangle(309, 290, colorBlue, 311, 296, colorBlue, 309, 290, colorBlue);
+}
+
+void cleanScreen(){
+	for(int i=0; i<IMAGE_WIDTH; i++){
+		for(int j=0; j<IMAGE_HEIGHT; j++){
+			putPixel(i, j, colorBlack);
+		}
+	}
 }
 
 //-----------------------------------------------------------------------------
