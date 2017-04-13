@@ -9,6 +9,7 @@ unsigned char * FBptr;
 int colorRed[4] = {255, 0, 0, 255}; //Array de 4 elementos que compõem a cor Vermelha.
 int colorGreen[4] = {0, 255, 0, 255}; //Array de 4 elementos que compõem a cor Verde.
 int colorBlue[4] = {0, 0, 255, 255}; //Array de 4 elementos que compõem a cor Azul.
+int colorWhite[4] = {255, 255, 255, 255};
 
 #endif // _DEFINITIONS_H_
 

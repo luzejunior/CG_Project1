@@ -11,7 +11,7 @@
 //Recebe como parametro os pontos X e Y a serem colocados num plano cartesiano na tela.
 void putPixel(int x, int y, int RGBA[4]){
 
-	int print_position = ((x+(IMAGE_WIDTH/2)) + (((IMAGE_HEIGHT/2)-y) * IMAGE_WIDTH)) * 4; //Posição do Array da memória onde o Pixel vai ser pintado.
+	int print_position = (x + (y * IMAGE_WIDTH)) * 4; //Posição do Array da memória onde o Pixel vai ser pintado.
 
 	//Definição do array dos pixels na tela.
 	for(int i = 0; i<4; i++){
@@ -61,7 +61,7 @@ void drawLine(int x0, int y0, int RGBA0[4], int x1, int y1, int RGBA1[4]){
 		deltaY = tmp1;
 		if (incrementY<0){
 			deltaX = -deltaX;
-			std::clog << deltaX << "\n";
+			//std::clog << deltaX << "\n";
 		}
 		if(deltaX<0){
 			incrementY1 = -1;
@@ -83,34 +83,34 @@ void drawLine(int x0, int y0, int RGBA0[4], int x1, int y1, int RGBA1[4]){
 	int i = x0;
 
 	for(int k=0; k<=maior_Distancia; k++){
-		std::clog << "Pixel X: " << i << " Y: " << j << "\n";
-		std::clog << "DeltaX: " << deltaX << "\n";
-		std::clog << "DeltaY: " << deltaY << "\n";
-		std::clog << "Error: " << error << "\n";
-		std::clog << "incrementX: " << incrementX << " e " << incrementX1 << "\n";
-		std::clog << "incrementY: " << incrementY << " e " << incrementY1 << "\n\n";	
+		// std::clog << "Pixel X: " << i << " Y: " << j << "\n";
+		// std::clog << "DeltaX: " << deltaX << "\n";
+		// std::clog << "DeltaY: " << deltaY << "\n";
+		// std::clog << "Error: " << error << "\n";
+		// std::clog << "incrementX: " << incrementX << " e " << incrementX1 << "\n";
+		// std::clog << "incrementY: " << incrementY << " e " << incrementY1 << "\n\n";	
 		
 		putPixel(i, j, RGBA2);
 		error += deltaY;
 
-		if(RGBA0[0] > 0 && RGBA2[0] <= 255){
-			RGBA2[0] -= colorGradientRatio;
-		}
-		else if(RGBA0[1] > 0 && RGBA2[1] <= 255){
-			RGBA2[1] -= colorGradientRatio;
-		}
-		else if(RGBA0[2] > 0 && RGBA2[2] <= 255){
-			RGBA2[2] -= colorGradientRatio;
-		}
-		if(RGBA1[0] > 0 && RGBA2[0] <= 255){
-			RGBA2[0] += colorGradientRatio;
-		}
-		if(RGBA1[1] > 0 && RGBA2[1] <= 255){
-			RGBA2[1] += colorGradientRatio;
-		}
-		if(RGBA1[2] > 0 && RGBA2[2] <= 255){
-			RGBA2[2] += colorGradientRatio;
-		}
+		// if(RGBA0[0] > 0 && RGBA2[0] <= 255){
+		// 	RGBA2[0] -= colorGradientRatio;
+		// }
+		// else if(RGBA0[1] > 0 && RGBA2[1] <= 255){
+		// 	RGBA2[1] -= colorGradientRatio;
+		// }
+		// else if(RGBA0[2] > 0 && RGBA2[2] <= 255){
+		// 	RGBA2[2] -= colorGradientRatio;
+		// }
+		// if(RGBA1[0] > 0 && RGBA2[0] <= 255){
+		// 	RGBA2[0] += colorGradientRatio;
+		// }
+		// if(RGBA1[1] > 0 && RGBA2[1] <= 255){
+		// 	RGBA2[1] += colorGradientRatio;
+		// }
+		// if(RGBA1[2] > 0 && RGBA2[2] <= 255){
+		// 	RGBA2[2] += colorGradientRatio;
+		// }
 
 		//std::clog << "RGBA2 : " << RGBA2[0] << " " << RGBA2[1] << " " << RGBA2[2] << "\n";
 	
