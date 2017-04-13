@@ -9,6 +9,7 @@
 GLuint tex;
 
 void (*DrawFunc)(void);
+void cleanScreen(void);
 
 //*****************************************************************************
 void display(void)
